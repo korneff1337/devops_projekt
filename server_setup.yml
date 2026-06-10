@@ -16,7 +16,7 @@
         
 
 
-    - name: Paigalda vajalikud paketid (git, docker.io, docker-compose-plugin)
+    - name: Paigalda vajalikud paketid (git, docker.io, docker-compose)
     
       apt:
       
@@ -26,7 +26,7 @@
           
           - docker.io
           
-          - docker-compose-plugin
+          - docker-compose
           
         state: present
         
