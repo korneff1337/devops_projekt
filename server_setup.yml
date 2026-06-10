@@ -1,0 +1,85 @@
+---
+
+- name: Serveri ettevalmistus veebirakenduse jaoks
+
+  hosts: localhost
+  
+  become: yes
+  
+  tasks:
+  
+    - name: Uuenda apt cache
+    
+      apt:
+      
+        update_cache: yes
+        
+
+
+    - name: Paigalda vajalikud paketid (git, docker.io, docker-compose-plugin)
+    
+      apt:
+      
+        name:
+        
+          - git
+          
+          - docker.io
+          
+          - docker-compose-plugin
+          
+        state: present
+        
+
+
+    - name: Loo kaust /opt/webapp
+    
+      file:
+      
+        path: /opt/webapp
+        
+        state: directory
+        
+        mode: '0755'
+        
+        owner: "{{ ansible_user | default(lookup('env', 'USER')) }}"
+        
+        group: "{{ ansible_user | default(lookup('env', 'USER')) }}"
+        
+
+
+    - name: Lisa kasutaja docker gruppi
+    
+      user:
+      
+        name: "{{ ansible_user | default(lookup('env', 'USER')) }}"
+        
+        groups: docker
+        
+        append: yes
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
